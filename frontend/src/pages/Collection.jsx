@@ -17,12 +17,32 @@ export default function Collection() {
     }
   };
 
+  const toggleSubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setSubCategory((prv) => prv.filter((item) => item !== e.target.value));
+    } else {
+      setSubCategory((prv) => [...prv, e.target.value]);
+    }
+  };
+
+  const applyFilters = () => {
+    let productsCopy = products.slice();
+    if (category.length > 0) {
+      productsCopy = productsCopy.filter((item) =>
+        category.includes(item.category)
+      );
+    }
+
+    setFilterProducts(productsCopy);
+  };
+
   useEffect(() => {
     setFilterProducts(products);
   }, []);
+
   useEffect(() => {
-    console.log(category);
-  }, [category]);
+    applyFilters();
+  }, [category, subCategory]);
 
   const [filterProducts, setFilterProducts] = useState([]);
   return (
@@ -46,13 +66,31 @@ export default function Collection() {
           <p className="font-medium mb-3 text-sm">CATEGORIES</p>
           <div className="font-light text-gray-700 flex flex-col gap-2 text-sm">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Men"} /> Men
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Men"}
+                onChange={toggleCategory}
+              />{" "}
+              Men
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Women"} /> Women
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Women"}
+                onChange={toggleCategory}
+              />{" "}
+              Women
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Kids"} /> Kids
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Kids"}
+                onChange={toggleCategory}
+              />{" "}
+              Kids
             </p>
           </div>
         </div>
@@ -66,15 +104,30 @@ export default function Collection() {
           <p className="font-medium mb-3 text-sm">TYPE</p>
           <div className="font-light text-gray-700 flex flex-col gap-2 text-sm">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Topwear"} />{" "}
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Topwear"}
+                onChange={toggleSubCategory}
+              />{" "}
               Topwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Bottomwear"} />{" "}
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Bottomwear"}
+                onChange={toggleSubCategory}
+              />{" "}
               Bottomwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Winterwear"} />{" "}
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Winterwear"}
+                onChange={toggleSubCategory}
+              />{" "}
               Winterwear
             </p>
           </div>
