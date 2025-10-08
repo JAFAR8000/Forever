@@ -10,6 +10,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/order" element={<Orders />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
