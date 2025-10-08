@@ -73,7 +73,7 @@ export default function Navbar() {
       {/* sidebar menue for smaller screen */}
 
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white  ${
+        className={` fixed top-0 right-0 bottom-0 overflow-hidden bg-white  ${
           visible ? "w-full" : "w-0"
         }`}
       >
